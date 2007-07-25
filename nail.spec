@@ -1,4 +1,3 @@
-
 Summary:	A MIME capable implementation of the mailx command
 Name:		nail
 Version:	12.3
@@ -32,8 +31,8 @@ renamed to Mailx.
 %patch1 -p1 -b .pager
 
 %build
-# 11.25; parallel make broken
-make SENDMAIL=/usr/sbin/sendmail
+%serverbuild
+%make SENDMAIL=/usr/sbin/sendmail
 
 %install
 [ -n "$RPM_BUILD_ROOT" -a "$RPM_BUILD_ROOT" != "/" ] && rm -fr $RPM_BUILD_ROOT
