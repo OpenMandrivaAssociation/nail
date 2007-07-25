@@ -1,7 +1,7 @@
 
 Summary:	A MIME capable implementation of the mailx command
 Name:		nail
-Version:	12.2
+Version:	12.3
 Release:	%mkrel 1
 License:	BSD
 Group:		Networking/Mail
