@@ -4,14 +4,14 @@ Version:	12.3
 Release:	%mkrel 1
 License:	BSD
 Group:		Networking/Mail
-Source:		mailx-%{version}.tar.bz2
+URL:		http://heirloom.sourceforge.net/mailx.html
+Source:		http://prdownloads.sourceforge.net/heirloom/mailx-%{version}.tar.bz2
 # (mpol) 11.25 set PAGER to less, Mandriva doesn't provide pg
 Patch1:		nail-11.25-pager.patch
-URL:		http://heirloom.sourceforge.net/mailx.html
-BuildRoot:	%{_tmppath}/%{name}-%{version}-root
 BuildRequires:	openssl-devel
-Provides:	mailx = %version-%release
+Provides:	mailx = %{version}-%{release}
 Obsoletes:	mailx
+BuildRoot:	%{_tmppath}/%{name}-%{version}-buildroot
 
 %description
 Nail is derived from Berkeley Mail and is intended to provide the
@@ -25,7 +25,6 @@ as a mail batch language, both for sending and receiving mail.
 Since version 12.0 Nail has been integrated into the Heirloom project,
 renamed to Mailx.
 
-
 %prep
 %setup -q -n mailx-%{version}
 %patch1 -p1 -b .pager
@@ -35,20 +34,20 @@ renamed to Mailx.
 %make SENDMAIL=/usr/sbin/sendmail
 
 %install
-[ -n "$RPM_BUILD_ROOT" -a "$RPM_BUILD_ROOT" != "/" ] && rm -fr $RPM_BUILD_ROOT
+rm -rf %{buildroot}
+
 %makeinstall_std PREFIX=%{_prefix} UCBINSTALL=/usr/bin/install
-install -d  $RPM_BUILD_ROOT/bin
-mv $RPM_BUILD_ROOT%{_bindir}/mailx $RPM_BUILD_ROOT/bin/mail
-ln -sf ../../bin/mail $RPM_BUILD_ROOT%{_bindir}/nail
-ln -sf ../../bin/mail $RPM_BUILD_ROOT%{_bindir}/mailx
-ln -sf ../../bin/mail $RPM_BUILD_ROOT%{_bindir}/Mail
-ln -sf mailx.1 $RPM_BUILD_ROOT%{_mandir}/man1/mail.1
-ln -sf mailx.1 $RPM_BUILD_ROOT%{_mandir}/man1/Mail.1
-ln -sf mailx.1 $RPM_BUILD_ROOT%{_mandir}/man1/nail.1
+install -d  %{buildroot}/bin
+mv %{buildroot}%{_bindir}/mailx %{buildroot}/bin/mail
+ln -sf ../../bin/mail %{buildroot}%{_bindir}/nail
+ln -sf ../../bin/mail %{buildroot}%{_bindir}/mailx
+ln -sf ../../bin/mail %{buildroot}%{_bindir}/Mail
+ln -sf mailx.1 %{buildroot}%{_mandir}/man1/mail.1
+ln -sf mailx.1 %{buildroot}%{_mandir}/man1/Mail.1
+ln -sf mailx.1 %{buildroot}%{_mandir}/man1/nail.1
 
 %clean
-[ -n "$RPM_BUILD_ROOT" -a "$RPM_BUILD_ROOT" != "/" ] && rm -fr $RPM_BUILD_ROOT
-
+rm -rf %{buildroot}
 
 %files
 %defattr(-,root,root,-)
@@ -58,9 +57,7 @@ ln -sf mailx.1 $RPM_BUILD_ROOT%{_mandir}/man1/nail.1
 %{_bindir}/nail
 %{_bindir}/mailx
 %{_bindir}/Mail
-%{_mandir}/man1/mailx.1.bz2
-%{_mandir}/man1/Mail.1.bz2
-%{_mandir}/man1/mail.1.bz2
-%{_mandir}/man1/nail.1.bz2
-
-
+%{_mandir}/man1/mailx.1.*
+%{_mandir}/man1/Mail.1.*
+%{_mandir}/man1/mail.1.*
+%{_mandir}/man1/nail.1.*
