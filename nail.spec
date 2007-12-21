@@ -11,6 +11,7 @@ Patch1:		nail-11.25-pager.patch
 BuildRequires:	openssl-devel
 Provides:	mailx = %{version}-%{release}
 Obsoletes:	mailx
+BuildRoot:	%{_tmppath}/%{name}-%{version}-buildroot
 
 %description
 Nail is derived from Berkeley Mail and is intended to provide the
