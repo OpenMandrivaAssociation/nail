@@ -1,13 +1,15 @@
 Summary:	A MIME capable implementation of the mailx command
 Name:		nail
-Version:	12.3
-Release:	%mkrel 4
+Version:	12.4
+Release:	%mkrel 1
 License:	BSD
 Group:		Networking/Mail
 URL:		http://heirloom.sourceforge.net/mailx.html
-Source:		http://prdownloads.sourceforge.net/heirloom/mailx-%{version}.tar.bz2
+Source0:	http://prdownloads.sourceforge.net/heirloom/mailx-%{version}.tar.bz2
 # (mpol) 11.25 set PAGER to less, Mandriva doesn't provide pg
 Patch1:		nail-11.25-pager.patch
+Patch2:		mailx-12.4-nostrip.diff
+Patch3:		mailx-12.4-optflags.diff
 BuildRequires:	openssl-devel
 Provides:	mailx = %{version}-%{release}
 Obsoletes:	mailx
@@ -28,10 +30,12 @@ renamed to Mailx.
 %prep
 %setup -q -n mailx-%{version}
 %patch1 -p1 -b .pager
+%patch2 -p0 -b .nostrip
+%patch3 -p0 -b .optflags
 
 %build
 %serverbuild
-%make SENDMAIL=/usr/sbin/sendmail
+%make SENDMAIL=/usr/lib/sendmail LDFLAGS="%{ldflags}"
 
 %install
 rm -rf %{buildroot}
