@@ -1,7 +1,7 @@
 Summary:	A MIME capable implementation of the mailx command
 Name:		nail
 Version:	12.4
-Release:	%mkrel 4
+Release:	%mkrel 5
 License:	BSD
 Group:		Networking/Mail
 URL:		http://heirloom.sourceforge.net/mailx.html
@@ -11,6 +11,8 @@ Patch1:		nail-11.25-pager.patch
 Patch2:		mailx-12.4-nostrip.diff
 Patch3:		mailx-12.4-optflags.diff
 Patch4:		nail_optopt.patch
+# patch from Fedora to make it build with openssl
+Patch5:		mailx-12.4-openssl.patch
 BuildRequires:	openssl-devel
 Provides:	mailx = %{version}-%{release}
 Obsoletes:	mailx
@@ -34,6 +36,7 @@ renamed to Mailx.
 %patch2 -p0 -b .nostrip
 %patch3 -p0 -b .optflags
 %patch4 -p1 -b .optopt
+%patch5 -p1 -b .openssl
 
 %build
 %serverbuild
