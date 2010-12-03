@@ -40,7 +40,7 @@ renamed to Mailx.
 
 %build
 %serverbuild
-%make SENDMAIL=/usr/lib/sendmail LDFLAGS="%{ldflags}"
+make SENDMAIL=/usr/lib/sendmail LDFLAGS="%{ldflags}"
 
 %install
 rm -rf %{buildroot}
