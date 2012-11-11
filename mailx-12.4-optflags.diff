@@ -1,0 +1,11 @@
+--- Makefile	2008-12-21 22:48:33.000000000 +0100
++++ Makefile.oden	2008-12-21 22:49:50.000000000 +0100
+@@ -89,7 +89,7 @@
+ all: mailx
+ 
+ mailx: $(OBJ) LIBS
+-	$(CC) $(LDFLAGS) $(OBJ) `grep '^[^#]' LIBS` $(LIBS) -o mailx
++	$(CC) $(CFLAGS) $(CPPFLAGS) $(LDFLAGS) $(OBJ) `grep '^[^#]' LIBS` $(LIBS) -o mailx
+ 
+ $(OBJ): config.h def.h extern.h glob.h rcv.h
+ imap.o: imap_gssapi.c
