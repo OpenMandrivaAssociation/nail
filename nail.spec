@@ -1,7 +1,7 @@
 Summary:	A MIME capable implementation of the mailx command
 Name:		nail
 Version:	12.4
-Release:	9
+Release:	10
 License:	BSD
 Group:		Networking/Mail
 Url:		http://heirloom.sourceforge.net/mailx.html
