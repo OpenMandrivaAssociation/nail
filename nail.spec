@@ -1,7 +1,7 @@
 Summary:	A MIME capable implementation of the mailx command
 Name:		nail
 Version:	12.4
-Release:	27
+Release:	28
 License:	BSD
 Group:		Networking/Mail
 Url:		http://heirloom.sourceforge.net/mailx.html
@@ -15,7 +15,7 @@ Patch4:		nail_optopt.patch
 Patch5:		mailx-12.4-openssl.patch
 Patch6:		mailx-12.4-openssl-1.1.patch
 BuildRequires:	pkgconfig(openssl)
-Provides:	mailx = %{version}-%{release}
+Provides:	mailx = %{EVRD}
 
 %description
 Nail is derived from Berkeley Mail and is intended to provide the
@@ -40,10 +40,10 @@ renamed to Mailx.
 
 %build
 %serverbuild
-make SENDMAIL=/usr/lib/sendmail LDFLAGS="%{ldflags}"
+%make_build SENDMAIL=/usr/lib/sendmail LDFLAGS="%{ldflags}"
 
 %install
-%makeinstall_std PREFIX=%{_prefix} UCBINSTALL=/usr/bin/install
+%make_install PREFIX=%{_prefix} UCBINSTALL=/usr/bin/install
 install -d  %{buildroot}/bin
 mv %{buildroot}%{_bindir}/mailx %{buildroot}/bin/mail
 ln -sf ../../bin/mail %{buildroot}%{_bindir}/nail
@@ -64,4 +64,3 @@ ln -sf mailx.1 %{buildroot}%{_mandir}/man1/nail.1
 %{_mandir}/man1/Mail.1.*
 %{_mandir}/man1/mail.1.*
 %{_mandir}/man1/nail.1.*
-
