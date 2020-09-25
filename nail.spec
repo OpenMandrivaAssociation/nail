@@ -13,9 +13,17 @@ Patch3:		mailx-12.4-optflags.diff
 Patch4:		nail_optopt.patch
 # patch from Fedora to make it build with openssl
 Patch5:		mailx-12.4-openssl.patch
-Patch6:		mailx-12.4-openssl-1.1.patch
+# patches 6-9 fix security issues, including CVE-2004-2771
+# http://openwall.com/lists/oss-security/2014/12/16/12
+Patch6:		0001-outof-Introduce-expandaddr-flag.patch
+Patch7:		0002-unpack-Disable-option-processing-for-email-addresses.patch
+Patch8:		0003-fio.c-Unconditionally-require-wordexp-support.patch
+Patch9:		0004-globname-Invoke-wordexp-with-WRDE_NOCMD.patch
+Patch10:	nail-12.4-no-sslv2.patch
+Patch11:	nail-2.4-openssl11.patch
 BuildRequires:	pkgconfig(openssl)
 Provides:	mailx = %{EVRD}
+Obsoletes:	mailx < %{EVRD}
 
 %description
 Nail is derived from Berkeley Mail and is intended to provide the
@@ -40,7 +48,7 @@ renamed to Mailx.
 
 %build
 %serverbuild
-%make_build SENDMAIL=/usr/lib/sendmail LDFLAGS="%{ldflags}"
+make SENDMAIL=/usr/lib/sendmail LDFLAGS="%{build_ldflags}"
 
 %install
 %make_install PREFIX=%{_prefix} UCBINSTALL=/usr/bin/install
