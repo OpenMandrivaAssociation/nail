@@ -48,6 +48,7 @@ renamed to Mailx.
 
 # (tpg) adapt to OpenSSL3
 grep -rl "SSLv2_client_method" * | xargs sed -i 's/SSLv2_client_method/TLS_client_method/g'
+grep -rl "SSLv3_client_method" * | xargs sed -i 's/SSLv3_client_method/TLS_client_method/g'
 
 %build
 %serverbuild
