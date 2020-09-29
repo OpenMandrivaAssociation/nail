@@ -46,6 +46,9 @@ renamed to Mailx.
 %patch5 -p1 -b .openssl~
 %patch6 -p1 -b .openssl11~
 
+# (tpg) adapt to OpenSSL3
+grep -rl "SSLv2_client_method" * | xargs sed -i 's/SSLv2_client_method/TLS_client_method/g'
+
 %build
 %serverbuild
 make SENDMAIL=/usr/lib/sendmail LDFLAGS="%{build_ldflags}"
