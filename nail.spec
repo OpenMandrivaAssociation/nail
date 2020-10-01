@@ -1,3 +1,5 @@
+%global debug_package %nil
+
 Summary:	A MIME capable implementation of the mailx command
 Name:		nail
 Version:	12.4
@@ -21,6 +23,7 @@ Patch8:		0003-fio.c-Unconditionally-require-wordexp-support.patch
 Patch9:		0004-globname-Invoke-wordexp-with-WRDE_NOCMD.patch
 Patch10:	nail-12.4-no-sslv2.patch
 Patch11:	nail-2.4-openssl11.patch
+Patch12:	https://src.fedoraproject.org/rpms/mailx/raw/master/f/mailx-12.5-openssl.patch
 BuildRequires:	pkgconfig(openssl)
 Provides:	mailx = %{EVRD}
 Obsoletes:	mailx < %{EVRD}
@@ -45,6 +48,7 @@ renamed to Mailx.
 %patch4 -p1 -b .optopt~
 %patch5 -p1 -b .openssl~
 %patch6 -p1 -b .openssl11~
+%patch12 -p1
 
 # (tpg) adapt to OpenSSL3
 grep -rl "SSLv2_client_method" * | xargs sed -i 's/SSLv2_client_method/TLS_client_method/g'
