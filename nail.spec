@@ -1,9 +1,10 @@
-%global debug_package %nil
+# Work around incomplete debug packages
+%global _empty_manifest_terminate_build 0
 
 Summary:	A MIME capable implementation of the mailx command
 Name:		nail
 Version:	12.4
-Release:	28
+Release:	29
 License:	BSD
 Group:		Networking/Mail
 Url:		http://heirloom.sourceforge.net/mailx.html
