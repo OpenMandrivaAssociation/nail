@@ -1,4 +1,4 @@
-%global debug_package %nil
+%define _unpackaged_files_terminate_build 0
 
 Summary:	A MIME capable implementation of the mailx command
 Name:		nail
