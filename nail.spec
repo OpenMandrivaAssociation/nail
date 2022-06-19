@@ -4,7 +4,7 @@
 Summary:	A MIME capable implementation of the mailx command
 Name:		nail
 Version:	12.4
-Release:	29
+Release:	30
 License:	BSD
 Group:		Networking/Mail
 Url:		http://heirloom.sourceforge.net/mailx.html
@@ -61,11 +61,9 @@ make SENDMAIL=/usr/lib/sendmail LDFLAGS="%{build_ldflags}"
 
 %install
 %make_install PREFIX=%{_prefix} UCBINSTALL=/usr/bin/install
-install -d  %{buildroot}/bin
-mv %{buildroot}%{_bindir}/mailx %{buildroot}/bin/mail
-ln -sf ../../bin/mail %{buildroot}%{_bindir}/nail
-ln -sf ../../bin/mail %{buildroot}%{_bindir}/mailx
-ln -sf ../../bin/mail %{buildroot}%{_bindir}/Mail
+ln -sf mail %{buildroot}%{_bindir}/nail
+ln -sf mail %{buildroot}%{_bindir}/mailx
+ln -sf mail %{buildroot}%{_bindir}/Mail
 ln -sf mailx.1 %{buildroot}%{_mandir}/man1/mail.1
 ln -sf mailx.1 %{buildroot}%{_mandir}/man1/Mail.1
 ln -sf mailx.1 %{buildroot}%{_mandir}/man1/nail.1
@@ -73,11 +71,10 @@ ln -sf mailx.1 %{buildroot}%{_mandir}/man1/nail.1
 %files
 %doc COPYING AUTHORS INSTALL README TODO ChangeLog
 %config(noreplace) %{_sysconfdir}/nail.rc
-/bin/mail
 %{_bindir}/nail
 %{_bindir}/mailx
 %{_bindir}/Mail
-%{_mandir}/man1/mailx.1.*
-%{_mandir}/man1/Mail.1.*
-%{_mandir}/man1/mail.1.*
-%{_mandir}/man1/nail.1.*
+%{_mandir}/man1/mailx.1*
+%{_mandir}/man1/Mail.1*
+%{_mandir}/man1/mail.1*
+%{_mandir}/man1/nail.1*
