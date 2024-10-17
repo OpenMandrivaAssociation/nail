@@ -7,7 +7,7 @@ Version:	12.4
 Release:	32
 License:	BSD
 Group:		Networking/Mail
-Url:		http://heirloom.sourceforge.net/mailx.html
+Url:		https://heirloom.sourceforge.net/mailx.html
 Source0:	http://prdownloads.sourceforge.net/heirloom/mailx-%{version}.tar.bz2
 # (mpol) 11.25 set PAGER to less, Mandriva doesn't provide pg
 Patch1:		nail-11.25-pager.patch
