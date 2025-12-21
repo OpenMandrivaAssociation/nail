@@ -25,6 +25,7 @@ Patch9:		0004-globname-Invoke-wordexp-with-WRDE_NOCMD.patch
 Patch10:	nail-12.4-no-sslv2.patch
 Patch11:	nail-2.4-openssl11.patch
 Patch12:	https://src.fedoraproject.org/rpms/mailx/raw/master/f/mailx-12.5-openssl.patch
+BuildRequires:	make
 BuildRequires:	pkgconfig(openssl)
 Provides:	mailx = %{EVRD}
 Obsoletes:	mailx < %{EVRD}
